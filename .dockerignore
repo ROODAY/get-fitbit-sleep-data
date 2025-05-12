@@ -1,0 +1,8 @@
+node_modules
+npm-debug.log
+Dockerfile
+.dockerignore
+README.md
+package-lock.json
+src/get_fitbit_sleep_data.js
+src/server.js
