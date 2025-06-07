@@ -8,6 +8,8 @@ import fetch, { Headers } from "node-fetch"; // Import fetch and Headers from no
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Use this for getting a new refresh token
+// https://dev.fitbit.com/build/reference/web-api/troubleshooting-guide/oauth2-tutorial/
 const refreshTokenFilePath = path.resolve(
   __dirname,
   "fitbit_refresh_token.secret"

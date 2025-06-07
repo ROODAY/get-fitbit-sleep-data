@@ -4,3 +4,5 @@ Dockerfile
 .dockerignore
 README.md
 package-lock.json
+src/fitbit_refresh_token.secret
+.env
