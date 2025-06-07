@@ -2,6 +2,7 @@ import "dotenv/config"; // Load environment variables
 import express from "express";
 import basicAuth from "express-basic-auth";
 import getFitbitSleepData from "./get_fitbit_sleep_data.js"; // Use .js extension for ES modules
+import getSubredditTopDaily from "./get_subreddit_top_daily.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -18,6 +19,10 @@ app.use(
   })
 );
 
+app.get("/", (_, res) => {
+  res.send("Hello, world!");
+});
+
 app.get("/sleep", async (req, res) => {
   const date = req.query.date;
 
@@ -31,6 +36,19 @@ app.get("/sleep", async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).send("Error retrieving sleep data.");
+  }
+});
+
+app.get("/reddit_headlines", async (req, res) => {
+  const subreddit = req.query.subreddit || "worldnews";
+  const limit = parseInt(req.query.limit, 10) || 3;
+
+  try {
+    const headlines = await getSubredditTopDaily(subreddit, limit);
+    res.send(headlines);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error retrieving Reddit headlines.");
   }
 });
 
